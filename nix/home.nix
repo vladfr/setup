@@ -1,10 +1,20 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, fetchFromGitHub, buildGoModule, ... }:
+
 
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "vlad";
   home.homeDirectory = "/Users/vlad";
+
+  nixpkgs.overlays = [ (self: super: {
+    krewfile = super.callPackage ./kubernetes/krewfile.nix {};
+    kubectl-crossplane = super.callPackage ./kubernetes/kubectl-crossplane.nix {};
+  }) ];
+
+  imports = [
+    (import ./kubernetes/krewfile-hm.nix { config=config; lib=lib; pkgs=pkgs; })
+  ];
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -22,12 +32,49 @@
   home.sessionPath = [
     "$HOME/go/bin"
     "/usr/local/bin/"
+    "$HOME/.cargo/bin"
+    "$HOME/.krew/bin"
   ];
 
-  home.packages = [ pkgs.gettext pkgs.kubernetes-helm pkgs.gh pkgs.vim pkgs.tig pkgs.httpie pkgs.gnupg pkgs.git pkgs.kind ];
+  home.packages = [
+    pkgs.kubectl-crossplane
+    pkgs.krew
+    pkgs.krewfile
+    pkgs.civo
+    pkgs.gettext
+    pkgs.kubernetes-helm
+    pkgs.kubectl
+    pkgs.kind
+    pkgs.upbound
+    pkgs.gh
+    pkgs.vim
+    pkgs.tig
+    pkgs.httpie
+    pkgs.gnupg
+    pkgs.git
+    pkgs.go
+    pkgs.cue
+    pkgs.python3Full
+    pkgs.python310Packages.pip
+    pkgs.yq
+    pkgs.jq
+    pkgs.rustup
+    pkgs.natscli
+    pkgs.google-cloud-sdk
+    pkgs.awscli2
+  ];
 
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
+
+  programs.k9s = {
+    enable = true;
+    settings = {
+      k9s = {
+        maxConnRetry = 5;
+      };
+    };
+  };
 
   programs.zsh = {
     enable = true;
@@ -47,7 +94,7 @@
         dco = "docker-compose";
         k = "kubectl";
     };
-    initExtra = 
+    initExtra =
     ''
         source $HOME/.bash_secrets
     '';
@@ -74,4 +121,27 @@
     keep-derivations = true
     keep-outputs = true
   '';
+
+  home.file.".cargo/bin/rust" = {
+    executable = true;
+    text = ''
+      #!/bin/bash
+
+      name=$(basename $1 .rs)
+      path=./.bin/$name
+      mkdir -p .bin
+      rustc --out-dir .bin $@ && chmod +x $path && $path
+      rm ./$path
+    '';
+  };
+
+  programs.krewfile = {
+    enable = true;
+    plugins = [
+      "gke-credentials"
+      "whoami"
+      "krew"
+    ];
+  };
+
 }
