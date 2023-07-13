@@ -26,6 +26,7 @@
             plugins = [
             "whoami"
             "krew"
+            "dds"
             ];
         };
     };

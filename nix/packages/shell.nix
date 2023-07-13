@@ -29,9 +29,7 @@
             enable = true;
             enableAutosuggestions = true;
             enableCompletion = true;
-            syntaxHighlighting = {
-                enable = true;
-            };
+            enableSyntaxHighlighting = true;
             autocd = true;
             shellAliases = {
                 gst = "tig status";

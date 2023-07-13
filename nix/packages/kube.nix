@@ -12,6 +12,7 @@
             pinniped
             ytt
             kapp
+            argocd
 
             # sbom
             cosign
