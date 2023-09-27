@@ -6,6 +6,8 @@
             k9s
             kind
             kubectl
+            kustomize
+            kubectx
             kubernetes-helm
             krew
             cmctl
@@ -13,11 +15,15 @@
             ytt
             kapp
             argocd
+            fluxcd
 
             # sbom
             cosign
             syft
             grype
+
+            # dev
+            kubebuilder
         ];
 
         programs.k9s = {

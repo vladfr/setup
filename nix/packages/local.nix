@@ -12,12 +12,14 @@
             krewfile = super.callPackage ../kubernetes/krewfile.nix {};
             kubectl-crossplane = super.callPackage ../kubernetes/kubectl-crossplane.nix {};
             #teller = super.callPackage ../tools/teller.nix {};
+            istioctl = super.callPackage ../kubernetes/istioctl.nix {};
         }) ];
 
 
         home.packages = with pkgs; [
             krewfile
             kubectl-crossplane
+            istioctl
             #teller
         ];
 

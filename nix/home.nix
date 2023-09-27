@@ -13,7 +13,6 @@
     ./packages/kube.nix
     ./packages/cloud-cli.nix
     ./packages/local.nix
-    ./packages/istio.nix
   ];
 
   # This value determines the Home Manager release that your
