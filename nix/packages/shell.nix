@@ -84,6 +84,16 @@
             pinentry-program ${pkgs.pinentry_mac}/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac
         '';
 
+        home.file.".gitconfig-upsidr".text = ''
+            [user]
+                name = Vlad Fratila
+                email = vlad.fratila@up-sider.com
+                signingkey = 169BC5940861DD5D
+        '';
+
+        home.file.".gitconfig".source = ./git/gitconfig;
+        home.file.".gitignore".source = ./git/gitignore;
+
         programs.gpg = {
             enable = true;
         };

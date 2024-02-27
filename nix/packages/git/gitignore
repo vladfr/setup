@@ -1,0 +1,8 @@
+.DS_Store
+.python-version
+__pycache__
+.idea
+.vscode
+*.pyc
+node_modules
+.bash_secrets

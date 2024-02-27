@@ -1,0 +1,25 @@
+[user]
+    name = Vlad Fratila
+    email = vlad.fratila@gmail.com
+    signingkey = 9A9FE9C1DC8ECB90
+
+[pull]
+    rebase = true
+[core]
+    excludesfile = /Users/vfratila/.gitignore
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+[init]
+    defaultBranch = main
+[credential "https://github.com"]
+    helper =
+    helper = !/usr/local/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+    helper =
+    helper = !/usr/local/bin/gh auth git-credential
+[commit]
+    gpgsign = true
+[includeIf "gitdir/i:~/code/upsidr/**"]
+    path = .gitconfig-upsidr
+[safe]
+    directory = /go/src/github.com/argoproj/argo-cd
