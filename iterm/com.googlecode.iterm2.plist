@@ -855,8 +855,57 @@
 	</dict>
 	<key>ShowFullScreenTabBar</key>
 	<true/>
+	<key>Snippets</key>
+	<array>
+		<dict>
+			<key>guid</key>
+			<string>4F14C1A4-1537-48DF-8F1B-BF5C4C2F7E75</string>
+			<key>title</key>
+			<string>Crossplane tf</string>
+			<key>value</key>
+			<string>sed -i 's/\"prevent_destroy\":true/\"prevent_destroy\":false/g' main.tf.json</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>guid</key>
+			<string>3FFC798A-F7D5-46BA-A927-F6E321855E37</string>
+			<key>title</key>
+			<string>argocd get secret</string>
+			<key>value</key>
+			<string>kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>guid</key>
+			<string>260DA34B-11D1-4899-B052-AEC3706A1D62</string>
+			<key>title</key>
+			<string>k get secret istio-root-cert</string>
+			<key>value</key>
+			<string>k get secret -n istio-system cacerts -o jsonpath="{.data['root-cert\.pem']}" | base64 -D | openssl x509 -text</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>guid</key>
+			<string>6254D401-A26B-415B-AE75-B9125C9683CD</string>
+			<key>title</key>
+			<string>debug istio-proxy</string>
+			<key>value</key>
+			<string>curl -X POST http://localhost:15000/logging?level=debug 50
+
+</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
 	<key>SoundForEsc</key>
 	<false/>
+	<key>ToolbeltTools</key>
+	<array>
+		<string>Snippets</string>
+	</array>
 	<key>VisualIndicatorForEsc</key>
 	<false/>
 	<key>findMode_iTerm</key>
