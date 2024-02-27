@@ -13,6 +13,7 @@
             kubectl-crossplane = super.callPackage ../kubernetes/kubectl-crossplane.nix {};
             #teller = super.callPackage ../tools/teller.nix {};
             istioctl = super.callPackage ../kubernetes/istioctl.nix {};
+            wasme = super.callPackage ../kubernetes/wasme.nix {};
         }) ];
 
 
@@ -20,6 +21,7 @@
             krewfile
             kubectl-crossplane
             istioctl
+            #wasme
             #teller
         ];
 
@@ -29,6 +31,7 @@
             "whoami"
             "krew"
             "dds"
+            "sniff"
             ];
         };
     };

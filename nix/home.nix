@@ -12,6 +12,7 @@
     ./packages/lang.nix
     ./packages/kube.nix
     ./packages/cloud-cli.nix
+    ./packages/vue.nix
     ./packages/local.nix
   ];
 

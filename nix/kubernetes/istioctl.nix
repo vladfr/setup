@@ -2,7 +2,7 @@
 
 buildGoModule rec {
   pname = "istioctl";
-  version = "1.13.7";
+  version = "1.15.3";
 
   src = fetchFromGitHub {
     owner = "istio";

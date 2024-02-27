@@ -1,5 +1,10 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
+let
+
+  pkgs = import <unstable> {};
+
+in
 {
     imports = [
         ./rust.nix
@@ -9,6 +14,7 @@
         home.packages = with pkgs; [
             cue
             go
+            tinygo
             goreman
             ko
             python3Full

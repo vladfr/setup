@@ -1,11 +1,14 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
+let
+    pkgs = import <unstable> { config = { allowUnfree = true; }; };
+in
 {
     config = {
         home.packages = with pkgs; [
-            k9s
             kind
             kubectl
+            etcd
             kustomize
             kubectx
             kubernetes-helm
@@ -16,6 +19,11 @@
             kapp
             argocd
             fluxcd
+            wireshark-cli
+            termshark
+            kubeshark
+            oras # oci registry as storage - cli tool for oci images; for wasm
+            buildah
 
             # sbom
             cosign
