@@ -10,4 +10,4 @@ Feel free to fork and modify. Some highlights include:
  - Git configs with GPG for personal and company use
  - Custom zsh theme with a nice little `kubectx` snippet
  - ideas on how to split package files by purpose
- - `krewfile` support to install `kubectl` plugins with Nix easily
+ - `krewfile` plugin for `home-manager` -- install `kubectl` plugins with Nix easily!
