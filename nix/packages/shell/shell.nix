@@ -48,6 +48,9 @@
             };
             initExtraFirst =
             ''
+                # Set up oh-my-zsh custom directory
+                ZSH_CUSTOM=~/.oh-my-zsh/custom
+
                 # Nix - keep here for MacOS upgrades
                 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
                 source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
@@ -72,6 +75,8 @@
                 ];
             };
         };
+
+        home.file.".oh-my-zsh/custom/themes/rixius.zsh-theme".source = ./zsh_custom/rixius.zsh-theme;
 
         home.file.".tigrc".text = ''
             bind status C !git commit --signoff

@@ -8,11 +8,12 @@
   home.homeDirectory = "/Users/vlad";
 
   imports = [
-    ./packages/shell.nix
+    ./packages/shell/shell.nix
     ./packages/lang.nix
     ./packages/kube.nix
     ./packages/cloud-cli.nix
     ./packages/vue.nix
+    ./packages/db.nix
     ./packages/local.nix
   ];
 
