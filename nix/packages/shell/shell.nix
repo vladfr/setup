@@ -12,6 +12,7 @@
             gnupg
             pinentry_mac
             gh
+            pre-commit
             yq
             jq
             tree
@@ -32,7 +33,9 @@
             enable = true;
             enableAutosuggestions = true;
             enableCompletion = true;
-            enableSyntaxHighlighting = true;
+            syntaxHighlighting = {
+                enable = true;
+            };
             autocd = true;
             shellAliases = {
                 gst = "tig status";
@@ -60,6 +63,8 @@
             initExtra =
             ''
                 source $HOME/.bash_secrets
+
+                export GOPRIVATE=github.com/upsidr,go.upsider.dev
             '';
             oh-my-zsh = {
                 enable = true;
