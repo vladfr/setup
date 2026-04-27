@@ -7,6 +7,8 @@ in
     config = {
         home.packages = with pkgs; [
             kind
+            minikube
+            ctlptl
             kubectl
             etcd
             kustomize
@@ -14,16 +16,15 @@ in
             kubernetes-helm
             krew
             cmctl
-            pinniped
+           # pinniped
             ytt
             kapp
             argocd
             fluxcd
-            wireshark-cli
-            termshark
-            kubeshark
             oras # oci registry as storage - cli tool for oci images; for wasm
-            buildah
+            # buildah - not working
+            # kubelogin # moved to local
+            kubelogin-oidc
 
             # sbom
             cosign
@@ -32,6 +33,8 @@ in
 
             # dev
             kubebuilder
+            operator-sdk
+            tilt
         ];
 
         programs.k9s = {

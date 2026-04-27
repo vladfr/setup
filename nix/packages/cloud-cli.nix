@@ -5,15 +5,21 @@ in
 {
     config = {
         home.packages = with pkgs; [
-            civo
-            upbound
+            #civo
+            #upbound
             vault
-            natscli
-            (google-cloud-sdk.withExtraComponents [google-cloud-sdk.components.gke-gcloud-auth-plugin])
+            #natscli
+            #(google-cloud-sdk.withExtraComponents [google-cloud-sdk.components.gke-gcloud-auth-plugin])
             awscli2
-            terraform
-            terraform-docs
-            terragrunt
+            opentofu
+            # red hat
+            rosa
+            ocm
+            rhoas
+            odo
+            jq
+            scaleway-cli
+            glab
         ];
     };
 }

@@ -1,0 +1,24 @@
+Host github.com
+Host git.corp.adobe.com
+    ForwardAgent yes
+
+Host *
+    ServerAliveInterval 240
+    AddKeysToAgent yes
+    # UseKeychain yes ## for keys with passphrases
+    IdentityFile ~/.ssh/id_ed25519
+
+Host sshp.wipc.adobe.com
+    # User vfratila
+    # PreferredAuthentications password
+    # PubkeyAuthentication no
+    # UseKeychain yes
+
+# Host scb.dmz.mai1.adobe.net
+# Host scb.dmz.ut1.adobe.net
+# Host scb.global.adobe.net
+Host bastion.*
+Host scb.*
+    user vfratila
+    ForwardAgent yes
+    StrictHostKeyChecking no

@@ -12,13 +12,16 @@ in
 
     config = {
         home.packages = with pkgs; [
-            cue
             go
-            tinygo
+            bazel
             goreman
             ko
-            python3Full
-            python310Packages.pip
+            readline
+            xz
+            sqlite
+            openssl
+            tcl
+            tk
             nodejs_20
             yarn
         ];

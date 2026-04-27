@@ -3,7 +3,7 @@
 buildGoModule rec {
     pname = "teller";
     version = "1.5.6";
-    vendorSha256 = null;
+    vendorHash = null;
 
     src = fetchFromGitHub {
         owner = "tellerops";

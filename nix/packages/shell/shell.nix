@@ -13,12 +13,21 @@
             pinentry_mac
             gh
             pre-commit
-            yq
-            jq
+            yamllint
+            yamlfix
+            yq-go
+            gnused
             tree
             curl
             colordiff
             cocoapods
+            fzf
+            fzf-zsh
+            fzf-make
+            devbox
+            uv
+            turbo
+            pprof
         ];
 
         home.sessionPath = [
@@ -31,11 +40,13 @@
 
         programs.zsh = {
             enable = true;
-            enableAutosuggestions = true;
             enableCompletion = true;
             syntaxHighlighting = {
                 enable = true;
             };
+	    autosuggestion = {
+		enable = true;
+	    };
             autocd = true;
             shellAliases = {
                 gst = "tig status";
@@ -63,8 +74,13 @@
             initExtra =
             ''
                 source $HOME/.bash_secrets
+                source $HOME/.env
 
-                export GOPRIVATE=github.com/upsidr,go.upsider.dev
+                export GOPRIVATE=github.com/upsidr,go.upsider.dev,github.com/Adobe-Apis,git.corp.adobe.com,gitlab.com/kaloracloud
+
+                eval "$(/opt/homebrew/bin/brew shellenv)"
+                eval "$(pyenv init -)"
+                eval "$(pyenv virtualenv-init -)"
             '';
             oh-my-zsh = {
                 enable = true;
@@ -81,6 +97,12 @@
             };
         };
 
+        home.file.".config/nix/nix.conf".text = ''
+            keep-derivations = true
+            keep-outputs = true
+            experimental-features = nix-command flakes
+        '';
+
         home.file.".oh-my-zsh/custom/themes/rixius.zsh-theme".source = ./zsh_custom/rixius.zsh-theme;
 
         home.file.".tigrc".text = ''
@@ -94,6 +116,8 @@
             pinentry-program ${pkgs.pinentry_mac}/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac
         '';
 
+	home.file.".ssh/config".source = ./ssh/config;
+
         home.file.".gitconfig-upsidr".text = ''
             [user]
                 name = Vlad Fratila
@@ -101,11 +125,40 @@
                 signingkey = 169BC5940861DD5D
         '';
 
+        home.file.".gitconfig-adobe".text = ''
+            [user]
+                name = Vlad Fratila
+                email = vfratila@adobe.com
+                signingkey = 428200459C8718D7
+        '';
+
+        home.file.".gitconfig-adobeghec".text = ''
+            [user]
+                name = Vlad Fratila
+                email = vfratila@adobe.com
+                signingkey = 428200459C8718D7
+            [core]
+                sshCommand = ssh -i ~/.ssh/ghec_ed25519
+        '';
+
+        home.file.".gitconfig-kalora".text = ''
+            [user]
+                name = Vlad Fratila
+                email = vlad@kaloracloud.eu
+                signingkey = 2A0509AD43225F97
+        '';
+
         home.file.".gitconfig".source = ./git/gitconfig;
         home.file.".gitignore".source = ./git/gitignore;
 
         programs.gpg = {
             enable = true;
+        };
+
+        programs.direnv = {
+            enable = true;
+            enableZshIntegration = true;
+            nix-direnv.enable = true;
         };
     };
 }

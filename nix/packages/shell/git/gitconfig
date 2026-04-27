@@ -1,17 +1,24 @@
 [user]
     name = Vlad Fratila
     email = vlad.fratila@gmail.com
-    signingkey = 9A9FE9C1DC8ECB90
+    signingkey = 2763768CFBFF69AA
 
 [pull]
     rebase = true
 [core]
     excludesfile = /Users/vfratila/.gitignore
-[url "git@github.com:"]
-    insteadOf = https://github.com/
 [init]
     defaultBranch = main
+[url "git@github.com:"]
+    insteadOf = https://github.com/
+[url "git@git.corp.adobe.com:"]
+    insteadOf = https://git.corp.adobe.com/
+[url "git@gitlab.com:"]
+    insteadOf = https://gitlab.com/
 [credential "https://github.com"]
+    helper =
+    helper = !/usr/local/bin/gh auth git-credential
+[credential "https://git.corp.adobe.com"]
     helper =
     helper = !/usr/local/bin/gh auth git-credential
 [credential "https://gist.github.com"]
@@ -21,5 +28,11 @@
     gpgsign = true
 [includeIf "gitdir/i:~/code/upsidr/**"]
     path = .gitconfig-upsidr
+[includeIf "gitdir/i:~/code/adobe/**"]
+    path = .gitconfig-adobe
+[includeIf "gitdir/i:~/code/adobe_ghec/*/**"]
+    path = .gitconfig-adobeghec
+[includeIf "gitdir/i:~/code/kalora/**"]
+    path = .gitconfig-kalora
 [safe]
     directory = /go/src/github.com/argoproj/argo-cd

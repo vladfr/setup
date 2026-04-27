@@ -3,7 +3,7 @@
 buildGoModule rec {
     pname = "krewfile";
     version = "0.1.1";
-    vendorSha256 = "sha256-Z0H01Ts6RlBFwKgx+9YYAd9kT4BkCBL1mvJsRf2ci5I=";
+    vendorHash = "sha256-Z0H01Ts6RlBFwKgx+9YYAd9kT4BkCBL1mvJsRf2ci5I=";
 
     src = fetchFromGitHub {
         owner = "brumhard";
