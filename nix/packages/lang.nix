@@ -1,17 +1,12 @@
-{ config, ... }:
+{ config, unstable, ... }:
 
-let
-
-  pkgs = import <unstable> {};
-
-in
 {
     imports = [
         ./rust.nix
     ];
 
     config = {
-        home.packages = with pkgs; [
+        home.packages = with unstable; [
             go
             bazel
             goreman
@@ -24,6 +19,7 @@ in
             tk
             nodejs_20
             yarn
+            virtualenv
         ];
     };
 

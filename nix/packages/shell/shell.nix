@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, unstable, ... }:
 
 {
     config = {
@@ -60,8 +60,8 @@
                 dco = "docker-compose";
                 k = "kubectl";
             };
-            initExtraFirst =
-            ''
+            initContent = lib.mkMerge [
+              (lib.mkBefore ''
                 # Set up oh-my-zsh custom directory
                 ZSH_CUSTOM=~/.oh-my-zsh/custom
 
@@ -70,18 +70,16 @@
                 source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
                 fi
                 # End Nix
-            '';
-            initExtra =
-            ''
+              '')
+              ''
                 source $HOME/.bash_secrets
                 source $HOME/.env
 
                 export GOPRIVATE=github.com/upsidr,go.upsider.dev,github.com/Adobe-Apis,git.corp.adobe.com,gitlab.com/kaloracloud
 
                 eval "$(/opt/homebrew/bin/brew shellenv)"
-                eval "$(pyenv init -)"
-                eval "$(pyenv virtualenv-init -)"
-            '';
+              ''
+            ];
             oh-my-zsh = {
                 enable = true;
                 theme = "rixius";
@@ -159,6 +157,7 @@
             enable = true;
             enableZshIntegration = true;
             nix-direnv.enable = true;
+            package = unstable.direnv;
         };
     };
 }

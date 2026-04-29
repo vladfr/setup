@@ -9,27 +9,28 @@ function prompt_char {
     echo "≥%{$reset_color%}"
 }
 function _k_prompt_info_async {
-    cluster=$(kubectl config current-context)
-    ns=$(kubens -c)
+    [[ ! -f "${KUBECONFIG:-$HOME/.kube/config}" ]] && return
+    cluster=$(kubectl config current-context 2>/dev/null) || return
+    ns=$(kubens -c 2>/dev/null)
     if [ ! -z "$cluster" ]; then
-        if [[ $string == *"prod"* ]]; then
+        if [[ $cluster == *"prod"* ]]; then
             echo -en "⚡";
         fi
         echo "[$cluster::$ns]"
     fi
 }
 
-export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-function _venv_prompt_info_async {
-    VENV=$(pyenv version | cut -d ' ' -f 1)
-    if [ ! -z "$VENV" ] && [ "$VENV" != "system" ]; then
-        echo -n "%{$bg[white]%}%{$fg[black]%}"
-        echo "#pyenv##$VENV#%{$reset_color%}"
-    fi
-}
+# export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+# function _venv_prompt_info_async {
+#     VENV=$(pyenv version | cut -d ' ' -f 1)
+#     if [ ! -z "$VENV" ] && [ "$VENV" != "system" ]; then
+#         echo -n "%{$bg[white]%}%{$fg[black]%}"
+#         echo "#pyenv##$VENV#%{$reset_color%}"
+#     fi
+# }
 
 function _defer_async_register() {
-    _omz_register_handler _venv_prompt_info_async
+    # _omz_register_handler _venv_prompt_info_async
     _omz_register_handler _k_prompt_info_async
 }
 precmd_functions=(_defer_async_register $precmd_functions)
@@ -39,7 +40,8 @@ function k_prompt_info {
 }
 
 function venv_prompt_info {
-    echo -n $_OMZ_ASYNC_OUTPUT[_venv_prompt_info_async]
+    # echo -n $_OMZ_ASYNC_OUTPUT[_venv_prompt_info_async]
+    echo -n ""
 }
 
 RIXIUS_PRE="%{$bg[white]%}%{$fg[red]%}"

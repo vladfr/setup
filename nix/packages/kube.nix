@@ -1,11 +1,8 @@
-{ config, ... }:
+{ config, unstable, ... }:
 
-let
-    pkgs = import <unstable> { config = { allowUnfree = true; }; };
-in
 {
     config = {
-        home.packages = with pkgs; [
+        home.packages = with unstable; [
             kind
             minikube
             ctlptl

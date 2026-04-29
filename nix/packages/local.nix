@@ -36,7 +36,6 @@
             "krew"
             "dds"
             "sniff"
-            "adobe/core"
             ];
         };
     };

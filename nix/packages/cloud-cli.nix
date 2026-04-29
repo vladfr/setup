@@ -1,19 +1,16 @@
-{ config, ... }:
-let
-    pkgs = import <unstable> { config = { allowUnfree = true; }; };
-in
+{ config, unstable, ... }:
 {
     config = {
-        home.packages = with pkgs; [
+        home.packages = with unstable; [
             #civo
             #upbound
             vault
             #natscli
-            #(google-cloud-sdk.withExtraComponents [google-cloud-sdk.components.gke-gcloud-auth-plugin])
+            (google-cloud-sdk.withExtraComponents [google-cloud-sdk.components.gke-gcloud-auth-plugin])
             awscli2
-            opentofu
+            # opentofu
             # red hat
-            rosa
+            # rosa
             ocm
             rhoas
             odo
